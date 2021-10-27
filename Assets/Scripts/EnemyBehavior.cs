@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    private EnemySpawner _enemySpawner;
+
     private int takenDamage;
+    public bool isDying = false;
 
     public int health = 10;
     public int speed;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //speed changeble
-
-        //Make me get damage
+        _enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "bullet")
         {
@@ -38,12 +32,15 @@ public class EnemyBehavior : MonoBehaviour
         //int takenDamage = GetComponent<Bullet_Con>().damage;
 
         health = health - takenDamage;
-        Debug.Log("Health taken " + takenDamage);
+        //Debug.Log("Health taken " + takenDamage);
 
         if (health <= 0)
         {
-            Debug.Log("enemy is dead");
+            isDying = true;
+            //Debug.Log("enemy is dead");
+            _enemySpawner.targetsCount.Remove(gameObject);
             Destroy(gameObject);
+            //print("After Removing one " + _enemySpawner.targetsCount.Count);
         }
     }
 }

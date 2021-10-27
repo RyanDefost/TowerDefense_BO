@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3012684402938016639}
   - component: {fileID: 3012684402938016636}
   - component: {fileID: 3012684402938016637}
-  m_Layer: 0
+  - component: {fileID: 2051363066292619299}
+  m_Layer: 2
   m_Name: thing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +30,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.02, y: 0.462059, z: 0.393}
   m_LocalScale: {x: 0.29250968, y: 0.07744065, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3012684403168694506}
   m_Father: {fileID: 3012684404365060028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -93,6 +95,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2051363066292619299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3012684402938016635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d5274710c6b4f4fa66aa385506cb04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletObject: {fileID: 1050219606275395403, guid: 43d5bdbd0ccbe294ea81b1c2c63c0e34,
+    type: 3}
+  BulletSpawner: {fileID: 3012684403168694507}
+  damage: 1
+  bulletRange: 5
+  fireRate: 0.5
 --- !u!1 &3012684403168694507
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3012684403168694506}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,12 +136,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3012684403168694507}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.464, z: 0.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0683738, y: 0.025064297, z: 0.50699997}
+  m_LocalScale: {x: 3.4186902, y: 12.913115, z: 1}
   m_Children: []
-  m_Father: {fileID: 3012684404365060028}
-  m_RootOrder: 1
+  m_Father: {fileID: 3012684402938016634}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3012684404365060025
 GameObject:
@@ -135,9 +155,9 @@ GameObject:
   - component: {fileID: 3012684404365060029}
   - component: {fileID: 3012684404365060026}
   - component: {fileID: 3012684404365060027}
-  - component: {fileID: 3012684404365060024}
   - component: {fileID: 3012684404365060031}
-  m_Layer: 0
+  - component: {fileID: -7991819800035966820}
+  m_Layer: 2
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +176,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1.8028, z: 1}
   m_Children:
   - {fileID: 3012684402938016634}
-  - {fileID: 3012684403168694506}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -220,7 +239,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3012684404365060024
+--- !u!135 &3012684404365060031
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3012684404365060025}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7991819800035966820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,16 +270,3 @@ MonoBehaviour:
   damage: 1
   bulletRange: 5
   fireRate: 0.5
---- !u!135 &3012684404365060031
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3012684404365060025}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}

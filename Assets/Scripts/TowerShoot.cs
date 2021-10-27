@@ -26,12 +26,6 @@ public class TowerShoot : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            shoot();
-        }
-
-
         // if the Target is "dead" it will not try and look for it
         if (EnterView.Count > 0 && EnterView[0] != null)
             {
@@ -55,6 +49,7 @@ public class TowerShoot : MonoBehaviour
     public void shoot()
     {
         GameObject bullet = Instantiate(bulletObject, BulletSpawner.transform.position , transform.rotation);
+
         bullet.GetComponent<Bullet_Con>().damage = damage;   
         Destroy(bullet, bulletRange);
     }
