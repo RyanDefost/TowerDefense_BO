@@ -5,16 +5,22 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     private EnemySpawner _enemySpawner;
+    private MoneyManager _moneyManager;
 
     private int takenDamage;
     public bool isDying = false;
 
     public int health = 10;
-    public int speed;
+
+    public float _speed = 2;
+    public float _originalSpeed;
 
     private void Start()
     {
+        _originalSpeed = _speed;
+
         _enemySpawner = FindObjectOfType<EnemySpawner>();
+        _moneyManager = FindObjectOfType<MoneyManager>();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -23,24 +29,36 @@ public class EnemyBehavior : MonoBehaviour
         {
             takenDamage = collision.gameObject.GetComponent<Bullet_Con>().damage;
             Destroy(collision.gameObject);
-            getHit();
+            getHit(takenDamage);
         }
     }
 
-    public void getHit()
+    public void getHit(int damageGiven)
     {
-        //int takenDamage = GetComponent<Bullet_Con>().damage;
-
-        health = health - takenDamage;
-        //Debug.Log("Health taken " + takenDamage);
+        health = health - damageGiven;
 
         if (health <= 0)
         {
             isDying = true;
-            //Debug.Log("enemy is dead");
             _enemySpawner.targetsCount.Remove(gameObject);
             Destroy(gameObject);
-            //print("After Removing one " + _enemySpawner.targetsCount.Count);
+            _moneyManager.AddMoney(1);
+        }
+    }
+
+    public void GiveSlowness(bool isSlowed)
+    {
+        if (isSlowed == false)
+        {
+            print("IK KOM HIER");
+            if (_speed == _originalSpeed)
+            {
+                _speed = _speed / 1.5f;
+            }
+        }
+        else
+        {
+            _speed = _originalSpeed;
         }
     }
 }

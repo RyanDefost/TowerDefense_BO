@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PathFollower : MonoBehaviour
 {
-	[SerializeField] private float _speed;
+	public float _speed;
 	[SerializeField] private float _arrivalThresholds;
 
+	private PlayerHeath _playerHealth;
+	private EnemyBehavior _EnemyBehavior;
 	private EnemySpawner _enemySpawner;
 	private Path _path;
 	private Waypoint _currentWaypoint;
@@ -14,13 +16,14 @@ public class PathFollower : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		_enemySpawner = FindObjectOfType<EnemySpawner>();
 		SetupPath();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		_speed = _EnemyBehavior._speed;
+
 		Vector3 WaypointPosition = _currentWaypoint.GetPosition();
 		transform.LookAt(_currentWaypoint.GetPosition() + new Vector3(0,transform.position.y,0));
 		transform.Translate(Vector3.forward * _speed * Time.deltaTime);
@@ -42,16 +45,23 @@ public class PathFollower : MonoBehaviour
 		}
 	}
 
-	private void SetupPath()
-	{
-		_path = FindObjectOfType<Path>();
-		_currentWaypoint = _path.GetWaypoint();
-	}
-
 	private void pathComplete()
 	{
 		//Debug.Log("PathComplete");
 		Destroy(gameObject);
 		_enemySpawner.targetsCount.Remove(gameObject);
+
+		_playerHealth.MinHealth(1);
+
+	}
+
+	private void SetupPath()
+	{
+		_playerHealth = FindObjectOfType<PlayerHeath>();
+		_EnemyBehavior = FindObjectOfType<EnemyBehavior>();
+		_enemySpawner = FindObjectOfType<EnemySpawner>();
+
+		_path = FindObjectOfType<Path>();
+		_currentWaypoint = _path.GetWaypoint();
 	}
 }

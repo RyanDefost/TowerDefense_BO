@@ -267,6 +267,6 @@ MonoBehaviour:
   bulletObject: {fileID: 1050219606275395403, guid: 43d5bdbd0ccbe294ea81b1c2c63c0e34,
     type: 3}
   BulletSpawner: {fileID: 3012684403168694507}
-  damage: 1
+  damage: 4
   bulletRange: 5
   fireRate: 0.5

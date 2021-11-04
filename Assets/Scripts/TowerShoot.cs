@@ -16,9 +16,21 @@ public class TowerShoot : MonoBehaviour
 
     List <GameObject> EnterView = new List <GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "target")
+        {
+            EnterView.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "target")
+        {
+            //When it leaves the range it will look at the next one
+            EnterView.Remove(other.gameObject);
+        }
 
     }
 
@@ -52,25 +64,6 @@ public class TowerShoot : MonoBehaviour
 
         bullet.GetComponent<Bullet_Con>().damage = damage;   
         Destroy(bullet, bulletRange);
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "target")
-        {
-            EnterView.Add(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "target")
-        {
-            //When it leaves the range it will look at the next one
-            EnterView.Remove(other.gameObject);
-        }
-
     }
 
 

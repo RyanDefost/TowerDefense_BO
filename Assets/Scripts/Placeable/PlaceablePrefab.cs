@@ -4,57 +4,76 @@ using UnityEngine;
 
 public class PlaceablePrefab : MonoBehaviour
 {
-    private Tiles _tiles;
+    private MoneyManager _moneyManager;
+    private PlaceableUI _placeableUI;
 
     public GameObject BaseTower;
-    bool _isBuildable = false;
+    public GameObject LaserTower;
+    public GameObject SlownessTower;
+
+    private Tiles _seclectedTile = null;
+    [SerializeField] private LayerMask _layer;
+
     Vector3 _tilePosition;
-
-    //click Button to set "Holding tower" true
-    //if "Holding tower" == true
-
-    //Tiles can be clicked.
-    //Check if Tile == Buildeble.
-    //Get posistion BuildebleTile.
-
-    //Instanciate prefab on posistion.BuildebleTile
-    //then "Holding tower" == false
 
     private void Start()
     {
         Setup();
     }
-
-    private void OnMouseDown()
+    private void Update()
     {
-        RaycastHit[] hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition));
-        foreach (RaycastHit hit in hits)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (hit.collider.gameObject.layer == 8)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, _layer))
             {
-                //Setup
-                _isBuildable = hit.collider.gameObject.GetComponent<Tiles>().GetisBuildable();
-                Vector3 _tilePosition = hit.collider.gameObject.GetComponent<Tiles>().GetTilePosition();
+                Tiles tile = hit.transform.GetComponent<Tiles>();
 
-                print(_isBuildable);
+                if (tile._isBuildable)
+                {
+                    _seclectedTile = tile;
+                    _placeableUI.Show(true);
+                }
+                else
+                {
+                    print("NIET BUILDABLE");
+                }
 
-                PlaceTower(_tilePosition);
-                hit.collider.gameObject.GetComponent<Tiles>()._isBuildable = false;
             }
         }
     }
 
-    public void PlaceTower(Vector3 Pos)
+    public void PlaceTower(GameObject chosenTower)
     {
-        if (_isBuildable == true)
-        {
-            GameObject Tower = Instantiate(BaseTower,new Vector3(Pos.x, transform.position.y + 1, Pos.z), transform.rotation);
+        print(chosenTower);
+        int Cost = _moneyManager.AmountForTower(chosenTower);
 
+
+        if (_moneyManager.MoneyCount() >= Cost && _seclectedTile._isBuildable == true)
+        {
+            GameObject Tower = Instantiate(chosenTower, new Vector3(
+                _seclectedTile.transform.position.x, transform.position.y + 1, _seclectedTile.transform.position.z), transform.rotation);
+            
+            _moneyManager.MoneyMin(Cost);
+            _seclectedTile._isBuildable = false;
+
+            _placeableUI.Show(false);
+            _seclectedTile = null;
+
+
+        }
+        else
+        {
+            print("FUCK");
         }
     }
 
+
     public void Setup()
     {
-        _tiles = FindObjectOfType<Tiles>();
+        _placeableUI = FindObjectOfType<PlaceableUI>();
+        _moneyManager = FindObjectOfType<MoneyManager>();
     }
 }

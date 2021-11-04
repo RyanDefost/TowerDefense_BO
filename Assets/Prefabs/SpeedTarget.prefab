@@ -19,6 +19,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1801254084679955212, guid: 66242892c0f8a2a458ba9b02fc5b3424,
         type: 3}
+      propertyPath: _speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801254084679955212, guid: 66242892c0f8a2a458ba9b02fc5b3424,
+        type: 3}
       propertyPath: health
       value: 20
       objectReference: {fileID: 0}
@@ -85,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 1801254084679955251, guid: 66242892c0f8a2a458ba9b02fc5b3424,
         type: 3}
       propertyPath: _speed
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1801254084957508394, guid: 66242892c0f8a2a458ba9b02fc5b3424,
         type: 3}

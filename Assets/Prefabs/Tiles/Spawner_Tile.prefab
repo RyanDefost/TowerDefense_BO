@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c9b8a449d83e34aad79b94c6cec1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicTargetObject: {fileID: 1801254084679955213, guid: 66242892c0f8a2a458ba9b02fc5b3424,
-    type: 3}
+  _waveInfo: []
 --- !u!1001 &7116357199261668253
 PrefabInstance:
   m_ObjectHideFlags: 0

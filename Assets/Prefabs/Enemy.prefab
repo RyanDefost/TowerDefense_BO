@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 1801254083885847459}
   - component: {fileID: 1801254083885847484}
   - component: {fileID: 1801254083885847485}
-  - component: {fileID: 1801254083885847486}
-  m_Layer: 2
+  - component: {fileID: 4124075623657884021}
+  m_Layer: 0
   m_Name: body
-  m_TagString: target
+  m_TagString: targetBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,11 +115,10 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2, z: 1.5}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!54 &1801254083885847486
+--- !u!54 &4124075623657884021
 Rigidbody:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4769989411968908192, guid: bf957dc986296f440aab481d9fccdccf,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801254083885847481}
@@ -127,7 +126,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
@@ -144,10 +143,11 @@ GameObject:
   - component: {fileID: 1801254084679955251}
   - component: {fileID: 1801254084679955212}
   - component: {fileID: 5879777698917900013}
+  - component: {fileID: -8289274500319273496}
   m_Layer: 2
   m_Name: Enemy
   m_TagString: target
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -178,8 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417dc623ed6c47c4a8f4ad7cb69bf9d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
-  _arrivalThresholds: 0.1
+  _speed: 0
+  _arrivalThresholds: 0.03
 --- !u!114 &1801254084679955212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,8 +193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDying: 0
-  health: 30
-  speed: 0
+  health: 10
+  _speed: 3
+  _originalSpeed: 0
 --- !u!65 &5879777698917900013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -208,6 +209,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2, z: 1.5}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &-8289274500319273496
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801254084679955213}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1801254084957508389
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +237,7 @@ GameObject:
   - component: {fileID: 1801254084957508388}
   - component: {fileID: 1801254084957508393}
   - component: {fileID: 1801254084957508394}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
